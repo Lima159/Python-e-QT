@@ -1,8 +1,10 @@
+import cv2
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap, QPalette, QPainter
 from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 from PyQt5.QtWidgets import QLabel, QSizePolicy, QScrollArea, QMessageBox, QMainWindow, QMenu, QAction, \
     qApp, QFileDialog
+
 
 
 class QImageViewer(QMainWindow):
@@ -100,11 +102,14 @@ class QImageViewer(QMainWindow):
 
     def toGray(self):
         #self.cv2.imread(self,cv2.IMREAD_GRAYSCALE)
-        self.imgGrayFilter(self)
+        self.imgGrayFilter()
 
     def imgGrayFilter(self):
-        imagemColorida = cv2.imread(image, cv2.IMREAD_GRAYSCALE) 
-        return imagemColorida
+        
+        print( cv2.IMREAD_GRAYSCALE)
+        imagemEm50TonsDeCinza = cv2.imread(self.fileName(), cv2.IMREAD_GRAYSCALE) 
+        cv2.imshow('Imagem em Tons de Cinza', imagemEm50TonsDeCinza)
+        return 
 
     def createActions(self):
         self.openAct = QAction("&Open...", self, shortcut="Ctrl+O", triggered=self.open)
