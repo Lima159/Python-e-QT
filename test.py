@@ -47,6 +47,7 @@ class QImageViewer(QMainWindow):
             self.scrollArea.setVisible(True)
             self.printAct.setEnabled(True)
             self.fitToWindowAct.setEnabled(True)
+            self.cinzaAct.setEnabled(True)
             self.updateActions()
 
             if not self.fitToWindowAct.isChecked():
@@ -97,8 +98,13 @@ class QImageViewer(QMainWindow):
                           "<p>In addition the example shows how to use QPainter to "
                           "print an image.</p>")
 
-    def cinza(self):
-        self.imread(self,cv2.IMREAD_GRAYSCALE)
+    def toGray(self):
+        #self.cv2.imread(self,cv2.IMREAD_GRAYSCALE)
+        self.imgGrayFilter(self)
+
+    def imgGrayFilter(self):
+        imagemColorida = cv2.imread(image, cv2.IMREAD_GRAYSCALE) 
+        return imagemColorida
 
     def createActions(self):
         self.openAct = QAction("&Open...", self, shortcut="Ctrl+O", triggered=self.open)
@@ -111,7 +117,7 @@ class QImageViewer(QMainWindow):
                                       triggered=self.fitToWindow)
         self.aboutAct = QAction("&About", self, triggered=self.about)
         self.aboutQtAct = QAction("About &Qt", self, triggered=qApp.aboutQt)
-        self.cinzaAct = QAction("&Filtrar",self,triggered=self.cinza)
+        self.cinzaAct = QAction("&To Gray",self,enabled=False,triggered=self.toGray)
 
     def createMenus(self):
         self.fileMenu = QMenu("&File", self)
@@ -142,6 +148,7 @@ class QImageViewer(QMainWindow):
     def updateActions(self):
         self.zoomInAct.setEnabled(not self.fitToWindowAct.isChecked())
         self.zoomOutAct.setEnabled(not self.fitToWindowAct.isChecked())
+        self.normalSizeAct.setEnabled(not self.fitToWindowAct.isChecked())
         self.normalSizeAct.setEnabled(not self.fitToWindowAct.isChecked())
 
     def scaleImage(self, factor):
