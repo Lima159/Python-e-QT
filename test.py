@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QImage, QPixmap, QPalette, QPainter
 from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
@@ -13,6 +14,7 @@ class QImageViewer(QMainWindow):
 
         self.printer = QPrinter()
         self.scaleFactor = 0.0
+        self.fileName = "image.jpg"
 
         self.imageLabel = QLabel()
         self.imageLabel.setBackgroundRole(QPalette.Base)
@@ -37,6 +39,7 @@ class QImageViewer(QMainWindow):
         # fileName = QFileDialog.getOpenFileName(self, "Open File", QDir.currentPath())
         fileName, _ = QFileDialog.getOpenFileName(self, 'QFileDialog.getOpenFileName()', '',
                                                   'Images (*.png *.jpeg *.jpg *.bmp *.gif)', options=options)
+        print (fileName)
         if fileName:
             image = QImage(fileName)
             if image.isNull():
@@ -49,7 +52,10 @@ class QImageViewer(QMainWindow):
             self.scrollArea.setVisible(True)
             self.printAct.setEnabled(True)
             self.fitToWindowAct.setEnabled(True)
-            self.cinzaAct.setEnabled(True)
+            self.grayAct.setEnabled(True)
+            self.cannyAct.setEnabled(True)
+            self.toGray(fileName)
+            self.toCanny(fileName)
             self.updateActions()
 
             if not self.fitToWindowAct.isChecked():
@@ -100,16 +106,30 @@ class QImageViewer(QMainWindow):
                           "<p>In addition the example shows how to use QPainter to "
                           "print an image.</p>")
 
-    def toGray(self):
+    def toGray(self, fileName):
         #self.cv2.imread(self,cv2.IMREAD_GRAYSCALE)
-        self.imgGrayFilter()
+        #print (fileName)
+        imagemEmTonsDeCinza = cv2.imread(fileName, cv2.IMREAD_GRAYSCALE) 
+        cv2.imshow('Imagem em Tons de Cinza', imagemEmTonsDeCinza)
 
-    def imgGrayFilter(self):
-        
-        print( cv2.IMREAD_GRAYSCALE)
-        imagemEm50TonsDeCinza = cv2.imread(self.fileName(), cv2.IMREAD_GRAYSCALE) 
-        cv2.imshow('Imagem em Tons de Cinza', imagemEm50TonsDeCinza)
-        return 
+    def toCanny(self, fileName):
+        imagemOriginal = cv2.imread(fileName)
+
+        imagemVetorizada = imagemOriginal.reshape((-1, 3))
+        imagemVetorizada = np.float32(imagemVetorizada)
+
+        K = 8
+        maximoDeIteracoes = 10
+        criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, maximoDeIteracoes, 1.0)
+
+        ret, label, center = cv2.kmeans(imagemVetorizada, K, None, criteria, maximoDeIteracoes, cv2.KMEANS_RANDOM_CENTERS)
+
+        center = np.uint8(center)
+        imagemQuantizada = center[label.flatten()]
+        imagemQuantizada = imagemQuantizada.reshape((imagemOriginal.shape))
+
+        cv2.imshow('Imagem Quantizada', imagemQuantizada)
+
 
     def createActions(self):
         self.openAct = QAction("&Open...", self, shortcut="Ctrl+O", triggered=self.open)
@@ -122,7 +142,8 @@ class QImageViewer(QMainWindow):
                                       triggered=self.fitToWindow)
         self.aboutAct = QAction("&About", self, triggered=self.about)
         self.aboutQtAct = QAction("About &Qt", self, triggered=qApp.aboutQt)
-        self.cinzaAct = QAction("&To Gray",self,enabled=False,triggered=self.toGray)
+        self.grayAct = QAction("&To Gray",self,enabled=False,triggered=self.toGray)
+        self.cannyAct = QAction("&To Canny",self,enabled=False,triggered=self.toCanny)
 
     def createMenus(self):
         self.fileMenu = QMenu("&File", self)
@@ -138,13 +159,14 @@ class QImageViewer(QMainWindow):
         self.viewMenu.addSeparator()
         self.viewMenu.addAction(self.fitToWindowAct)
 
+        self.editMenu = QMenu("&Edit", self)
+        self.editMenu.addAction(self.grayAct)
+        self.editMenu.addAction(self.cannyAct)
+
         self.helpMenu = QMenu("&Help", self)
         self.helpMenu.addAction(self.aboutAct)
         self.helpMenu.addAction(self.aboutQtAct)
-
-        self.editMenu = QMenu("&Edit", self)
-        self.editMenu.addAction(self.cinzaAct)
-
+        
         self.menuBar().addMenu(self.fileMenu)
         self.menuBar().addMenu(self.viewMenu)
         self.menuBar().addMenu(self.helpMenu)
