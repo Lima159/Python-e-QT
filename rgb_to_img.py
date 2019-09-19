@@ -4,8 +4,7 @@ import cv2
 import os, sys
 from colory.color import Color
 
-
-im = Image.open("Lena.jpg")
+im = Image.open("clouds.jpg")
 
 #pixel que será verificado
 x = 100
