@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(10, 470, 111, 51))
         self.pushButton.setObjectName("pushButton")
         self.groupBox = QtWidgets.QGroupBox(self.tab)
-        self.groupBox.setGeometry(QtCore.QRect(10, 370, 120, 80))
+        self.groupBox.setGeometry(QtCore.QRect(10, 370, 231, 80))
         self.groupBox.setObjectName("groupBox")
         self.radioButton = QtWidgets.QRadioButton(self.groupBox)
         self.radioButton.setGeometry(QtCore.QRect(10, 20, 82, 17))
@@ -42,9 +42,30 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         self.label.setFont(font)
         self.label.setObjectName("label")
+        self.groupBox_2 = QtWidgets.QGroupBox(self.tab)
+        self.groupBox_2.setGeometry(QtCore.QRect(20, 180, 221, 171))
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.pushButton_3 = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_3.setGeometry(QtCore.QRect(20, 30, 181, 23))
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_4 = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_4.setGeometry(QtCore.QRect(20, 60, 181, 23))
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_5 = QtWidgets.QPushButton(self.groupBox_2)
+        self.pushButton_5.setGeometry(QtCore.QRect(20, 90, 181, 23))
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.pushButton_6 = QtWidgets.QPushButton(self.tab)
+        self.pushButton_6.setGeometry(QtCore.QRect(30, 90, 191, 23))
+        self.pushButton_6.setObjectName("pushButton_6")
         self.tabWidget.addTab(self.tab, "")
         self.tab_2 = QtWidgets.QWidget()
         self.tab_2.setObjectName("tab_2")
+        self.label_2 = QtWidgets.QLabel(self.tab_2)
+        self.label_2.setGeometry(QtCore.QRect(10, 10, 241, 181))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
         self.tabWidget.addTab(self.tab_2, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
@@ -52,6 +73,8 @@ class Ui_MainWindow(object):
         self.menubar.setObjectName("menubar")
         self.menuArquivo = QtWidgets.QMenu(self.menubar)
         self.menuArquivo.setObjectName("menuArquivo")
+        self.menuSair = QtWidgets.QMenu(self.menubar)
+        self.menuSair.setObjectName("menuSair")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -60,6 +83,7 @@ class Ui_MainWindow(object):
         self.actionAbrir.setObjectName("actionAbrir")
         self.menuArquivo.addAction(self.actionAbrir)
         self.menubar.addAction(self.menuArquivo.menuAction())
+        self.menubar.addAction(self.menuSair.menuAction())
 
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
@@ -74,9 +98,22 @@ class Ui_MainWindow(object):
         self.radioButton.setText(_translate("MainWindow", "Opção 1"))
         self.radioButton_2.setText(_translate("MainWindow", "Opção 2"))
         self.label.setText(_translate("MainWindow", "Bem Vindo ao aplicativo!"))
+        self.groupBox_2.setTitle(_translate("MainWindow", "Edição"))
+        self.pushButton_3.setText(_translate("MainWindow", "Comparar"))
+        self.pushButton_4.setText(_translate("MainWindow", "Edit1"))
+        self.pushButton_5.setText(_translate("MainWindow", "Edit2"))
+        self.pushButton_6.setText(_translate("MainWindow", "Tirar Foto"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Tab 1"))
+        self.label_2.setText(_translate("MainWindow", "Sobre nós: \n"
+"\n"
+"Este projeto tem o intuito de desenvol-\n"
+"ver um sistema de baixo custo de auto-\n"
+"mação e controle de variáveis ambientais em tanques de produção para monitoramento e controle de tanques \n"
+"de aquicultura para pequenos e médios \n"
+"produtores."))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.menuArquivo.setTitle(_translate("MainWindow", "Arquivo"))
+        self.menuSair.setTitle(_translate("MainWindow", "Sair"))
         self.actionAbrir.setText(_translate("MainWindow", "Abrir"))
 
 
