@@ -1,14 +1,5 @@
-# -*- coding: utf-8 -*-
-
-# Form implementation generated from reading ui file 'gui.ui'
-#
-# Created by: PyQt5 UI code generator 5.13.0
-#
-# WARNING! All changes made in this file will be lost!
-
-
 from PyQt5 import QtCore, QtGui, QtWidgets
-import cv2
+import coletarAmostra, cinza
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -91,6 +82,8 @@ class Ui_MainWindow(object):
         self.radioButton_2.setText(_translate("MainWindow", "Visualiar relatório"))
         self.pushButton.setText(_translate("MainWindow", "OK"))
         self.pushButton_6.setText(_translate("MainWindow", "Coletar Amostra"))
+        self.pushButton_6.clicked.connect(self.coletarAmostra)
+
         self.groupBox_3.setTitle(_translate("MainWindow", "Relátorio de Análise"))
         self.radioButton_3.setText(_translate("MainWindow", "Amônia"))
         self.radioButton_4.setText(_translate("MainWindow", "Nitrato"))
@@ -98,9 +91,17 @@ class Ui_MainWindow(object):
         self.pushButton_7.setText(_translate("MainWindow", "Avaliar"))
         self.pushButton_2.setText(_translate("MainWindow", "Armazenar coleta"))
         self.pushButton_8.setText(_translate("MainWindow", "Processar Amostra"))
+        self.pushButton_8.clicked.connect(self.filtroCinza)
+
         self.menuArquivo.setTitle(_translate("MainWindow", "Arquivo"))
         self.menuSair.setTitle(_translate("MainWindow", "Sair"))
         self.actionAbrir.setText(_translate("MainWindow", "Abrir"))
+
+    def coletarAmostra(self):
+        coletarAmostra.coleta()
+
+    def filtroCinza(self):
+        cinza.filtro()
 
 if __name__ == "__main__":
     import sys
