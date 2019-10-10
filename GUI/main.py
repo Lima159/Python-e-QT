@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import coletarAmostra, cinza
+from PyQt5.QtWidgets import QLabel, QSizePolicy, QScrollArea, QMessageBox, QMainWindow, QMenu, QAction, \
+    qApp, QFileDialog
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -95,13 +97,17 @@ class Ui_MainWindow(object):
 
         self.menuArquivo.setTitle(_translate("MainWindow", "Arquivo"))
         self.menuSair.setTitle(_translate("MainWindow", "Sair"))
+        #self.menuSair = QAction("E&xit", self, shortcut="Ctrl+Q", triggered=self.close())
+
         self.actionAbrir.setText(_translate("MainWindow", "Abrir"))
 
+
     def coletarAmostra(self):
-        coletarAmostra.coleta()
+        coletarAmostra.coleta(self)
 
     def filtroCinza(self):
-        cinza.filtro()
+        cinza.filtro(self)
+
 
 if __name__ == "__main__":
     import sys

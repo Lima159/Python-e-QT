@@ -1,6 +1,6 @@
 import cv2
 
-def coleta():
+def coleta(self):
     cam = cv2.VideoCapture(0)
 
     cv2.namedWindow("test")
