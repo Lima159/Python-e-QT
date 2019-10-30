@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
 
         self.menuArquivo.setTitle(_translate("MainWindow", "Arquivo"))
         self.menuSair.setTitle(_translate("MainWindow", "Sair"))
-        #self.menuSair = QAction("E&xit", self, shortcut="Ctrl+Q", triggered=self.close())
+        self.menuSair = QAction("E&xit", self, shortcut="Ctrl+Q", triggered=self.close())
 
         self.actionAbrir.setText(_translate("MainWindow", "Abrir"))
 

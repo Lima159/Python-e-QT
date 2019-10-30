@@ -23,8 +23,28 @@ class QImageViewer(QMainWindow):
         #self.imageLabel.setBackgroundRole(QPalette.Base)
         self.imageLabel.setGeometry(QtCore.QRect(0, 0, 500, 500))
         #self.imageLabel.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        #self.imageLabel.setScaledContents(True)
-        
+        #self.imageLabel.setScaledContents(True)    
+
+        self.imgLabel = QLabel(self)
+        self.imgLabel.setGeometry(QtCore.QRect(20, 60, 200, 200))
+        self.imgLabel.setText("HELLO")
+
+        self.criarTableView()
+       
+        self.scrollArea = QScrollArea()
+        self.scrollArea.setBackgroundRole(QPalette.Dark)
+        self.scrollArea.setWidget(self.imageLabel)
+        self.scrollArea.setVisible(False)
+
+        self.setCentralWidget(self.scrollArea)
+
+        self.createActions()
+        self.createMenus()       
+
+        self.setWindowTitle("Image Viewer")
+        self.resize(800, 600)
+
+    def criarTableView(self):
         self.tableView = QTableView(self)
         self.tableView.setGeometry(QtCore.QRect(530, -10, 271, 571))
         self.tableView.setObjectName("tableView")
@@ -97,20 +117,8 @@ class QImageViewer(QMainWindow):
         self.armazenarColeta = QtWidgets.QPushButton(self)
         self.armazenarColeta.setGeometry(QtCore.QRect(590, 480, 131, 41))
         self.armazenarColeta.setObjectName("armazenarColeta")        
-        self.armazenarColeta.setText("Armazenar coleta")
-
-        self.scrollArea = QScrollArea()
-        self.scrollArea.setBackgroundRole(QPalette.Dark)
-        self.scrollArea.setWidget(self.imageLabel)
-        self.scrollArea.setVisible(False)
-
-        self.setCentralWidget(self.scrollArea)
-
-        self.createActions()
-        self.createMenus()
-
-        self.setWindowTitle("Image Viewer")
-        self.resize(800, 600)
+        self.armazenarColeta.setText("Armazenar coleta")       
+    
 
     def getRGB(self):
         im = Image.open("dead_parrot.jpg")
@@ -123,14 +131,20 @@ class QImageViewer(QMainWindow):
     def filtroCinza(self):
         imagemEmTonsDeCinza = cinza.filtro(self)
 
-        imagemEmTonsDeCinza = cv2.resize(imagemEmTonsDeCinza, (2048,2048))
-        self.data = np.array(imagemEmTonsDeCinza).reshape(2048,2048).astype(np.int32)
-        qimage = QtGui.QImage(self.data, self.data.shape[0],self.data.shape[1],QtGui.QImage.Format_RGB32)
+        imagemEmTonsDeCinza = cv2.resize(imagemEmTonsDeCinza, (500,500))
+        self.data = np.array(imagemEmTonsDeCinza).reshape(500,500).astype(np.int32)
+        qimage = QtGui.QImage(self.data, self.data.shape[0], self.data.shape[1], QtGui.QImage.Format_RGB32)
+
 
         self.imageLabel.setPixmap(QPixmap.fromImage(qimage))
+        self.scaleFactor = 1.0 
 
-        print(type(qimage))
-        print(type(imagemEmTonsDeCinza))
+        self.scrollArea.setVisible(True)
+        #self.fitToWindowAct.setEnabled(True)
+        #self.updateActions()
+
+        #print(type(qimage))
+        #print(type(imagemEmTonsDeCinza))
 
     def coletaAmostra(self):
         coletarAmostra.coleta(self)
@@ -148,13 +162,13 @@ class QImageViewer(QMainWindow):
                 return
 
             self.imageLabel.setPixmap(QPixmap.fromImage(image))
-            """self.scaleFactor = 1.0
+            self.scaleFactor = 1.0
 
             self.scrollArea.setVisible(True)
             self.printAct.setEnabled(True)
-            self.fitToWindowAct.setEnabled(True)
+            #self.fitToWindowAct.setEnabled(True)
             self.updateActions()
-            """
+            
             #if not self.fitToWindowAct.isChecked():
             #    self.imageLabel.adjustSize()
 
