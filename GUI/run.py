@@ -249,7 +249,6 @@ class QImageViewer(QMainWindow):
         scrollBar.setValue(int(factor * scrollBar.value()
                                + ((factor - 1) * scrollBar.pageStep() / 2)))
 
-
 if __name__ == '__main__':
     import sys
     from PyQt5.QtWidgets import QApplication
