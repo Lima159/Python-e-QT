@@ -1,9 +1,8 @@
 import cv2
 
-def filtro(self):
+def filtro(img):
     #imagemColorida = cv2.imread('Lena.jpg', cv2.IMREAD_COLOR) 
-    imagemEmTonsDeCinza = cv2.imread('Lena.jpg', cv2.IMREAD_GRAYSCALE)
-
+    imagemEmTonsDeCinza = cv2.imread(img.name, cv2.IMREAD_GRAYSCALE)
     return imagemEmTonsDeCinza
 """
     cv2.imshow('Imagem Colorida', imagemColorida)

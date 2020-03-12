@@ -142,15 +142,15 @@ class QImageViewer(QMainWindow):
         print (pix[x,y])
 
     def filtroCinza(self):
-        img = Image.open("temp.jpg")
-        print(img)
+        img = open("temp.jpg")
+        #os.path.dirname(img.name)
+        print(img.name)
 
-        imagemEmTonsDeCinza = cinza.filtro(self)
+        imagemEmTonsDeCinza = cinza.filtro(img)
 
         imagemEmTonsDeCinza = cv2.resize(imagemEmTonsDeCinza, (500,500))
         self.data = np.array(imagemEmTonsDeCinza).reshape(500,500).astype(np.int32)
         qimage = QtGui.QImage(self.data, self.data.shape[0], self.data.shape[1], QtGui.QImage.Format_RGB32)
-
 
         self.imageLabel.setPixmap(QPixmap.fromImage(qimage))
         self.scaleFactor = 1.0 
