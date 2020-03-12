@@ -73,6 +73,13 @@ class QImageViewer(QMainWindow):
         self.processarAmostra.setStyleSheet("background-image: url(transparent.png)")
         self.processarAmostra.clicked.connect(self.filtroCinza)
 
+        self.getCores = QtWidgets.QPushButton(self)
+        self.getCores.setGeometry(QtCore.QRect(570, 170, 191, 23))
+        self.getCores.setObjectName("getCores")
+        self.getCores.setText("Coletar Tom de Cores")
+        self.getCores.setStyleSheet("background-image: url(transparent.png)")
+        self.getCores.clicked.connect(self.getRGB)
+
         self.relatorioAnalise = QtWidgets.QGroupBox(self)
         self.relatorioAnalise.setGeometry(QtCore.QRect(580, 210, 181, 111))
         self.relatorioAnalise.setObjectName("relatorioAnalise")
@@ -134,12 +141,12 @@ class QImageViewer(QMainWindow):
         self.armazenarColeta.setStyleSheet("background-image: url(transparent.png)")
 
     def getRGB(self):
-        im = Image.open("dead_parrot.jpg")
+        im = Image.open("temp.jpg")
         x = 3
         y = 4
-
+        
         pix = im.load()
-        print (pix[x,y])
+        print (pix[1,1])
 
     def filtroCinza(self):
         img = open("temp.jpg")
