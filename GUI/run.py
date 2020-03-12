@@ -25,9 +25,9 @@ class QImageViewer(QMainWindow):
         #self.imageLabel.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
         #self.imageLabel.setScaledContents(True)    
 
-        self.imgLabel = QLabel(self)
-        self.imgLabel.setGeometry(QtCore.QRect(20, 60, 200, 200))
-        self.imgLabel.setText("HELLO")
+        #self.imgLabel = QLabel(self)
+        #self.imgLabel.setGeometry(QtCore.QRect(20, 60, 200, 200))
+        #self.imgLabel.setText("HELLO")
 
         self.criarTableView()
        
@@ -42,12 +42,13 @@ class QImageViewer(QMainWindow):
         self.createMenus()       
 
         self.setWindowTitle("Image Viewer")
-        self.resize(800, 600)
+        self.resize(800, 560)
 
     def criarTableView(self):
         self.tableView = QTableView(self)
         self.tableView.setGeometry(QtCore.QRect(530, -10, 271, 571))
         self.tableView.setObjectName("tableView")
+        self.tableView.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.label = QtWidgets.QLabel(self)
         self.label.setGeometry(QtCore.QRect(570, 30, 211, 31))
@@ -56,69 +57,81 @@ class QImageViewer(QMainWindow):
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.label.setText("Bem Vindo ao aplicativo!")
+        self.label.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.coletarAmostra = QtWidgets.QPushButton(self)
         self.coletarAmostra.setGeometry(QtCore.QRect(570, 110, 191, 23))
         self.coletarAmostra.setObjectName("coletarAmostra")
         self.coletarAmostra.setText("Coletar Amostra")
+        self.coletarAmostra.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
         self.coletarAmostra.clicked.connect(self.coletaAmostra)
 
         self.processarAmostra = QtWidgets.QPushButton(self)
         self.processarAmostra.setGeometry(QtCore.QRect(570, 140, 191, 23))
         self.processarAmostra.setObjectName("processarAmostra")
         self.processarAmostra.setText("Processar Amostra")
+        self.processarAmostra.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
         self.processarAmostra.clicked.connect(self.filtroCinza)
 
         self.relatorioAnalise = QtWidgets.QGroupBox(self)
         self.relatorioAnalise.setGeometry(QtCore.QRect(580, 210, 181, 111))
         self.relatorioAnalise.setObjectName("relatorioAnalise")
         self.relatorioAnalise.setTitle("Relátorio de Análise")
+        self.relatorioAnalise.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.radioAmonia = QtWidgets.QRadioButton(self.relatorioAnalise)
         self.radioAmonia.setGeometry(QtCore.QRect(50, 20, 82, 17))
         self.radioAmonia.setObjectName("radioAmonia")
-        self.radioAmonia.setText("Amônia")              
+        self.radioAmonia.setText("Amônia")           
+        self.radioAmonia.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")   
 
         self.radioNitrato = QtWidgets.QRadioButton(self.relatorioAnalise)
         self.radioNitrato.setGeometry(QtCore.QRect(50, 40, 82, 17))
         self.radioNitrato.setObjectName("radioNitrato")
         self.radioNitrato.setText("Nitrato")
+        self.radioNitrato.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.radioNitrito = QtWidgets.QRadioButton(self.relatorioAnalise)
         self.radioNitrito.setGeometry(QtCore.QRect(50, 60, 82, 17))
         self.radioNitrito.setObjectName("radioNitrito")
         self.radioNitrito.setText("Nitrito")
+        self.radioNitrito.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.avaliar = QtWidgets.QPushButton(self.relatorioAnalise)
         self.avaliar.setGeometry(QtCore.QRect(50, 80, 75, 23))
         self.avaliar.setObjectName("avaliar")
         self.avaliar.setText("Avaliar")
+        self.avaliar.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.groupBox = QtWidgets.QGroupBox(self)
         self.groupBox.setGeometry(QtCore.QRect(550, 370, 231, 80))
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
+        self.groupBox.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
         
         self.visualizarRelatorio = QtWidgets.QRadioButton(self.groupBox)
         self.visualizarRelatorio.setGeometry(QtCore.QRect(10, 20, 101, 17))
         self.visualizarRelatorio.setObjectName("visualizarRelatorio")
         self.visualizarRelatorio.setText("Visualiar relatório")
+        self.visualizarRelatorio.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.enviarSMS = QtWidgets.QRadioButton(self.groupBox)
         self.enviarSMS.setGeometry(QtCore.QRect(130, 20, 82, 17))
         self.enviarSMS.setObjectName("enviarSMS")
         self.enviarSMS.setText("Enviar SMS")
+        self.enviarSMS.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
         self.pushButton = QtWidgets.QPushButton(self.groupBox)
         self.pushButton.setGeometry(QtCore.QRect(70, 50, 75, 23))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.setText("OK")                                
+        self.pushButton.setText("OK")        
+        self.pushButton.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")                        
 
         self.armazenarColeta = QtWidgets.QPushButton(self)
         self.armazenarColeta.setGeometry(QtCore.QRect(590, 480, 131, 41))
         self.armazenarColeta.setObjectName("armazenarColeta")        
         self.armazenarColeta.setText("Armazenar coleta")       
-    
+        self.armazenarColeta.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
 
     def getRGB(self):
         im = Image.open("dead_parrot.jpg")
@@ -155,23 +168,26 @@ class QImageViewer(QMainWindow):
                                                   'Images (*.png *.jpeg *.jpg *.bmp *.gif)', options=options)
         print (fileName)
         if fileName:
-            image = QImage(fileName)
+            
+            self.setStyleSheet("background-image: url(" + fileName + "); background-repeat: no-repeat; ")
+            
+            #image = QImage(fileName)
             #print(type(image))
-            if image.isNull():
-                QMessageBox.information(self, "Image Viewer", "Cannot load %s." % fileName)
-                return
+            #if image.isNull():
+            #    QMessageBox.information(self, "Image Viewer", "Cannot load %s." % fileName)
+            #    return
 
-            self.imageLabel.setPixmap(QPixmap.fromImage(image))
-            self.scaleFactor = 1.0
+            #self.imageLabel.setPixmap(QPixmap.fromImage(image))
+            #self.scaleFactor = 1.0
 
-            self.scrollArea.setVisible(True)
-            self.printAct.setEnabled(True)
+            #self.scrollArea.setVisible(True)
+            #self.printAct.setEnabled(True)
             #self.fitToWindowAct.setEnabled(True)
-            self.updateActions()
+            #self.updateActions()
             
             #if not self.fitToWindowAct.isChecked():
             #    self.imageLabel.adjustSize()
-
+            
     def print_(self):
         dialog = QPrintDialog(self.printer, self)
         if dialog.exec_():
@@ -182,13 +198,13 @@ class QImageViewer(QMainWindow):
             painter.setViewport(rect.x(), rect.y(), size.width(), size.height())
             painter.setWindow(self.imageLabel.pixmap().rect())
             painter.drawPixmap(0, 0, self.imageLabel.pixmap())
-
+    """
     def zoomIn(self):
         self.scaleImage(1.25)
 
     def zoomOut(self):
         self.scaleImage(0.8)
-
+    """
     def normalSize(self):
         self.imageLabel.adjustSize()
         self.scaleFactor = 1.0
@@ -205,8 +221,8 @@ class QImageViewer(QMainWindow):
         self.openAct = QAction("&Open...", self, shortcut="Ctrl+O", triggered=self.open)
         self.printAct = QAction("&Print...", self, shortcut="Ctrl+P", enabled=False, triggered=self.print_)
         self.exitAct = QAction("E&xit", self, shortcut="Ctrl+Q", triggered=self.close)
-        self.zoomInAct = QAction("Zoom &In (25%)", self, shortcut="Ctrl++", enabled=False, triggered=self.zoomIn)
-        self.zoomOutAct = QAction("Zoom &Out (25%)", self, shortcut="Ctrl+-", enabled=False, triggered=self.zoomOut)
+        #self.zoomInAct = QAction("Zoom &In (25%)", self, shortcut="Ctrl++", enabled=False, triggered=self.zoomIn)
+        #self.zoomOutAct = QAction("Zoom &Out (25%)", self, shortcut="Ctrl+-", enabled=False, triggered=self.zoomOut)
         self.normalSizeAct = QAction("&Normal Size", self, shortcut="Ctrl+S", enabled=False, triggered=self.normalSize)
         self.fitToWindowAct = QAction("&Fit to Window", self, enabled=False, checkable=True, shortcut="Ctrl+F",
                                       triggered=self.fitToWindow)
@@ -214,21 +230,22 @@ class QImageViewer(QMainWindow):
 
     def createMenus(self):
         self.fileMenu = QMenu("&File", self)
+        self.fileMenu.setStyleSheet("background-image: url(D:/igor/IFBA/Python/qt_py/cv/GUI/transparent.png)")
         self.fileMenu.addAction(self.openAct)
         self.fileMenu.addAction(self.printAct)
         self.fileMenu.addSeparator()
         self.fileMenu.addAction(self.exitAct)
-
+        """
         self.viewMenu = QMenu("&View", self)
         self.viewMenu.addAction(self.zoomInAct)
         self.viewMenu.addAction(self.zoomOutAct)
         self.viewMenu.addAction(self.normalSizeAct)
         self.viewMenu.addSeparator()
         self.viewMenu.addAction(self.fitToWindowAct)
-        
+        """
         self.menuBar().addMenu(self.fileMenu)
-        self.menuBar().addMenu(self.viewMenu)
-
+        #self.menuBar().addMenu(self.viewMenu)
+        
     def updateActions(self):
         self.zoomInAct.setEnabled(not self.fitToWindowAct.isChecked())
         self.zoomOutAct.setEnabled(not self.fitToWindowAct.isChecked())
